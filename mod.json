@@ -1,9 +1,9 @@
 {
-    "displayName": "Mod Template",
-    "description": "Mindustry Java mod template, complete with EntityAnno and syntax downgrader integration.",
+    "displayName": "Time Control Java",
+    "description": "Time Control but in Java, Originated by sk7725. Dont use TimeControl and TimeControlJava at same time, it will conflicting each other. DO NOT USE IN MULTIPLAYER!!",
     "version": "v1.0",
     "minGameVersion": "146",
-    "author": "You",
+    "author": "WilloIzCitron",
     "java": true,
-    "main": "template.ModTemplate"
+    "main": "id.willoizcitron.timeControl.TimeControl"
 }

@@ -27,6 +27,7 @@ val arcVersion: String by project
 val mindustryVersion: String by project
 val mindustryBEVersion: String by project
 val entVersion: String by project
+val bluiVersion: String by project
 
 val modName: String by project
 val modArtifact: String by project
@@ -50,6 +51,10 @@ fun mindustry(module: String): String{
 
 fun entity(module: String): String{
     return "com.github.GlennFolker.EntityAnno$module:$entVersion"
+}
+
+fun bottomleft(): String{
+    return "com.github.MEEPofFaith:bottom-left-ui:$bluiVersion"
 }
 
 allprojects{
@@ -116,6 +121,7 @@ project(":"){
 
         compileOnly(mindustry(":core"))
         compileOnly(arc(":arc-core"))
+        compileOnly(bottomleft())
     }
 
     val jar = tasks.named<Jar>("jar"){
