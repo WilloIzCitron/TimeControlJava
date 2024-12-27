@@ -46,7 +46,7 @@ public class Controller {
                 lStyle.over = Tex.flatDownBase;
                 lStyle.down = Tex.whitePane;
 
-                ImageButton b = t.button(new TextureRegionDrawable(Icon.refresh), 24, () -> timeSlider.setValue(0)).padLeft(6).get();
+                ImageButton b = t.button(new TextureRegionDrawable(Icon.refresh), 24, () -> {timeSlider.setValue(0); curSpeed = 1;}).padLeft(6).get();
                 b.getStyle().imageUpColor = Pal.accent;
                 t.add(timeSlider).padLeft(6).minWidth(200);
                 timeSlider.moved(v -> {
