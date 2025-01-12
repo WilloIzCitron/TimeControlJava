@@ -3,6 +3,8 @@ package id.willoizcitron.timeControl.ui;
 import arc.*;
 import arc.graphics.*;
 import arc.math.*;
+import arc.scene.event.EventListener;
+import arc.scene.event.SceneEvent;
 import arc.scene.style.*;
 import arc.scene.ui.*;
 import arc.scene.ui.layout.*;
@@ -15,7 +17,7 @@ import mindustry.graphics.*;
 import mindustry.input.*;
 
 public class Controller {
-    private static Color[] cols = {Pal.lancerLaser, Pal.accent, Color.valueOf("cc6eaf")}; //Pink from BetaMindy
+    private static Color[] cols = {Pal.lancerLaser, Pal.accent, Pal.redDust};
     private static Slider timeSlider = null;
     private static float curSpeed = 0;
 
@@ -37,14 +39,14 @@ public class Controller {
                 timeSlider = new Slider(-8, 8, 1, false);
                 timeSlider.setValue(0);
 
-                TextButton l = t.button("[accent]x1", () -> {
+                Label l = t.labelWrap("[accent]x1").grow().width((float) (10.5 * 10)).get();
+                l.addListener(event -> {
                     curSpeed = Mathf.clamp(curSpeed, -Core.settings.getInt("multiplier"), Core.settings.getInt("multiplier")) - 1;
-                }).grow().width((float) (10.5 * 8)).get();
-                l.margin(0);
-                TextButton.ButtonStyle lStyle = l.getStyle();
-                lStyle.up = Tex.pane;
-                lStyle.over = Tex.flatDownBase;
-                lStyle.down = Tex.whitePane;
+                    return false;
+                });
+                l.setAlignment(0);
+                Label.LabelStyle lStyle = l.getStyle();
+                lStyle.background = Tex.underline;
 
                 ImageButton b = t.button(new TextureRegionDrawable(Icon.refresh), 24, () -> {timeSlider.setValue(0); curSpeed = 1;}).padLeft(6).get();
                 b.getStyle().imageUpColor = Pal.accent;
@@ -80,9 +82,9 @@ public class Controller {
         Tmp.c1.lerp(cols, (speed + 8) / 16);
         String text = "[#" + Tmp.c1.toString() + "]";
         if(speed >= 0){
-            text += "x" + Mathf.pow(Core.settings.getInt("multiplier"), speed);
+            text += "x" + (int) Mathf.pow(Core.settings.getInt("multiplier"), speed);
         }else{
-            text += "x1/" + Mathf.pow(Core.settings.getInt("multiplier"), Math.abs(speed));
+            text += "x1/" + (int) Mathf.pow(Core.settings.getInt("multiplier"), Math.abs(speed));
         }
         return text;
     }
